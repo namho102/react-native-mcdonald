@@ -6,6 +6,25 @@ import Button from 'react-native-button';
 import SearchBar from 'react-native-material-design-searchbar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ItemCheckbox from 'react-native-item-checkbox';
+import { Sae, Fumi } from 'react-native-textinput-effects';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+
+class CheckoutScreen extends React.Component {
+  static navigationOptions = {
+    header: {
+       visible: false,
+     },
+  };
+
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+
+      <View></View>
+
+    );
+  }
+}
 
 class MenuScreen extends React.Component {
   static navigationOptions = {
@@ -16,6 +35,7 @@ class MenuScreen extends React.Component {
 
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.view}>
 
@@ -33,7 +53,7 @@ class MenuScreen extends React.Component {
                 <Text style={styles.price}>&#36;3.99</Text>
             </View>
 
-            <ItemCheckbox color="#36C75A"/>
+            <ItemCheckbox size={36} color="#36C75A"/>
           </View>
 
           <View style={styles.card}>
@@ -47,7 +67,7 @@ class MenuScreen extends React.Component {
                 <Text style={styles.price}>&#36;1.79</Text>
             </View>
 
-            <ItemCheckbox color="#36C75A"/>
+            <ItemCheckbox size={36} color="#36C75A"/>
           </View>
 
           <View style={styles.card}>
@@ -61,7 +81,7 @@ class MenuScreen extends React.Component {
                 <Text style={styles.price}>&#36;4.99</Text>
             </View>
 
-            <ItemCheckbox color="#36C75A"/>
+            <ItemCheckbox size={36} color="#36C75A"/>
           </View>
 
           <View style={styles.card}>
@@ -75,7 +95,7 @@ class MenuScreen extends React.Component {
                 <Text style={styles.price}>&#36;4.79</Text>
             </View>
 
-            <ItemCheckbox color="#36C75A"/>
+            <ItemCheckbox size={36} color="#36C75A"/>
           </View>
 
           <View style={styles.card}>
@@ -89,22 +109,18 @@ class MenuScreen extends React.Component {
                 <Text style={styles.price}>&#36;1</Text>
             </View>
 
-            <ItemCheckbox color="#36C75A"/>
+            <ItemCheckbox size={36} color="#36C75A"/>
           </View>
         </ScrollView>
 
 
         <Button style={styles.mapButton}
-              onPress={() => navigate('Menu')}>
+              onPress={() => navigate('Checkout')}>
             Checkout
           </Button>
 
 
       </View>
-
-
-
-
 
     );
   }
@@ -166,6 +182,9 @@ class HomeScreen extends React.Component {
     Expo.Font.loadAsync({
       'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
     });
+    Expo.Font.loadAsync({
+      'Arial': require('./assets/fonts/Montserrat-Medium.ttf'),
+    });
   }
   render() {
     const { navigate } = this.props.navigation;
@@ -189,16 +208,23 @@ const App = StackNavigator({
   Home: { screen: HomeScreen },
   Map: { screen: MapScreen },
   Menu: { screen: MenuScreen },
+  Checkout: {screen: CheckoutScreen}
 });
 
 export default App;
 
 const styles = StyleSheet.create({
+  checkout: {
+    marginTop: 24,
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#90b4ff'
+  },
   food: {
     flexDirection: 'column',
     margin: 10,
     alignItems: 'center',
-    width: 150
+    width: 170
   },
   name: {
     marginLeft: 10,
@@ -213,16 +239,16 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat-Bold'
   },
   image: {
-    width: 100,
-    height: 100,
-    borderRadius: 50
+    width: 90,
+    height: 90,
+    borderRadius: 45
   },
   card: {
     flexDirection: 'row',
     margin: 10,
     alignItems: 'center',
     backgroundColor: '#e4e3e0',
-    borderRadius: 50
+    borderRadius: 45
   },
   header: {
     // backgroundColor: 'rgba(47,47,47,0.98)',
