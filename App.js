@@ -1,48 +1,111 @@
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, View, Image } from 'react-native';
+import { AppRegistry, StyleSheet, Text, ScrollView, View, Image } from 'react-native';
 import {  StackNavigator  } from 'react-navigation';
 import Expo from 'expo';
 import Button from 'react-native-button';
 import SearchBar from 'react-native-material-design-searchbar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import ItemCheckbox from 'react-native-item-checkbox';
 
 class MenuScreen extends React.Component {
-
   static navigationOptions = {
     header: {
        visible: false,
      },
   };
-  render() {
 
+
+  render() {
     return (
       <View style={styles.view}>
 
-        <Text style={styles.header}><MaterialCommunityIcons name="food" size={30} color="#676879" /> MENU</Text>
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Double-Quarter-Pounder-with-Cheese.png'}}
-          />
-          <View style={styles.food}>
-              <Text style={styles.name}>Hamburger</Text>
-              <Text style={styles.price}>12$</Text>
+        <Text style={styles.header}><MaterialCommunityIcons name="food" size={30} color="#676879"/> MENU</Text>
+
+        <ScrollView>
+          <View style={styles.card}>
+            <Image
+              style={styles.image}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Double-Quarter-Pounder-with-Cheese.png'}}
+            />
+
+            <View style={styles.food}>
+                <Text style={styles.name}>Hamburger</Text>
+                <Text style={styles.price}>&#36;3.99</Text>
+            </View>
+
+            <ItemCheckbox color="#36C75A"/>
           </View>
 
-        </View>
+          <View style={styles.card}>
+            <Image
+              style={styles.image}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Fries-Small-Medium.png'}}
+            />
 
-        <View style={styles.card}>
-          <Image
-            style={styles.image}
-            source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Fries-Small-Medium.png'}}
-          />
-          <View style={styles.food}>
-              <Text style={styles.name}>French Fries</Text>
-              <Text style={styles.price}>12$</Text>
+            <View style={styles.food}>
+                <Text style={styles.name}>French Fries</Text>
+                <Text style={styles.price}>&#36;1.79</Text>
+            </View>
+
+            <ItemCheckbox color="#36C75A"/>
           </View>
 
-        </View>
+          <View style={styles.card}>
+            <Image
+              style={styles.image}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Chicken-McNuggets-4pc.png'}}
+            />
+
+            <View style={styles.food}>
+                <Text style={styles.name}>Chicken Nuggets</Text>
+                <Text style={styles.price}>&#36;4.99</Text>
+            </View>
+
+            <ItemCheckbox color="#36C75A"/>
+          </View>
+
+          <View style={styles.card}>
+            <Image
+              style={styles.image}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Premium-Southwest-Salad-with-Buttermilk-Crispy-Chicken.png'}}
+            />
+
+            <View style={styles.food}>
+                <Text style={styles.name}>Southwest Salad</Text>
+                <Text style={styles.price}>&#36;4.79</Text>
+            </View>
+
+            <ItemCheckbox color="#36C75A"/>
+          </View>
+
+          <View style={styles.card}>
+            <Image
+              style={styles.image}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Coffee-Medium.png'}}
+            />
+
+            <View style={styles.food}>
+                <Text style={styles.name}>Coffee</Text>
+                <Text style={styles.price}>&#36;1</Text>
+            </View>
+
+            <ItemCheckbox color="#36C75A"/>
+          </View>
+        </ScrollView>
+
+
+        <Button style={styles.mapButton}
+              onPress={() => navigate('Menu')}>
+            Checkout
+          </Button>
+
+
       </View>
+
+
+
+
+
     );
   }
 }
@@ -96,6 +159,14 @@ class HomeScreen extends React.Component {
        visible: false,
      },
   };
+  componentDidMount() {
+    Expo.Font.loadAsync({
+      'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
+    });
+    Expo.Font.loadAsync({
+      'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+    });
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -126,17 +197,20 @@ const styles = StyleSheet.create({
   food: {
     flexDirection: 'column',
     margin: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    width: 150
   },
   name: {
     marginLeft: 10,
-    fontSize: 18
+    fontSize: 16,
+    fontFamily: 'Montserrat-Medium'
   },
   price: {
     marginLeft: 20,
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#ff0017'
+    // fontWeight: 'bold',
+    color: '#ff0017',
+    fontFamily: 'Montserrat-Bold'
   },
   image: {
     width: 100,
