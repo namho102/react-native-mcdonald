@@ -1,13 +1,16 @@
 import React from 'react';
-import { AppRegistry, StyleSheet, Text, ScrollView, View, Image } from 'react-native';
+import { AppRegistry, StyleSheet, Text, ScrollView, View, Image, TextInput } from 'react-native';
 import {  StackNavigator  } from 'react-navigation';
 import Expo from 'expo';
 import Button from 'react-native-button';
 import SearchBar from 'react-native-material-design-searchbar';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 import ItemCheckbox from 'react-native-item-checkbox';
-import { Sae, Fumi } from 'react-native-textinput-effects';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+// import { Sae, Fumi } from 'react-native-textinput-effects';
+// import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { CreditCardInput } from "react-native-credit-card-input";
+var Spinner = require('rn-spinner');
+
 
 class CheckoutScreen extends React.Component {
   static navigationOptions = {
@@ -15,13 +18,60 @@ class CheckoutScreen extends React.Component {
        visible: false,
      },
   };
+  constructor(props) {
+    super(props);
+    this.state = { num1: 1, num2: 1 };
+  }
+  _onChange() {
 
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
+      <View style={styles.checkout}>
 
-      <View></View>
+        <Text style={styles.reviewHeader}><Octicons name="checklist" size={30} color="#353535"/> REVIEW</Text>
 
+        <View style={styles.item}>
+          <Text style={styles.itemName}>Hamburger</Text>
+            <Spinner
+             min={1}
+             default={1}
+             color="#ff0017"
+             numColor="#ff0017"
+
+             fontSize={18}
+             width={100}
+             onNumChange={(num1)=>this.setState({num1})}
+             />
+           <Text style={styles.x}> x </Text>
+          <Text style={styles.itemPrice}>&#36;3.99</Text>
+
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemName}>Coffee</Text>
+            <Spinner
+             min={1}
+             default={1}
+             color="#ff0017"
+             numColor="#ff0017"
+
+             fontSize={18}
+             width={100}
+             onNumChange={(num2)=>this.setState({num2})}
+             />
+           <Text style={styles.x}> x </Text>
+          <Text style={styles.itemPrice}>&#36;1</Text>
+
+        </View>
+
+        <View>
+          <Text style={styles.total}>Total   ${ this.state.num1 * 3.99 + this.state.num2 } </Text>
+
+          // <CreditCardInput onChange={this._onChange} />
+        </View>
+      </View>
     );
   }
 }
@@ -214,11 +264,65 @@ const App = StackNavigator({
 export default App;
 
 const styles = StyleSheet.create({
+  reviewHeader: {
+    // backgroundColor: 'rgba(47,47,47,0.98)',
+    color: '#353535',
+    backgroundColor: '#f8f8f8',
+    fontSize: 22,
+    fontWeight: '900',
+    padding: 20,
+    marginBottom: 20,
+    // paddingLeft: 40,
+    // borderStyle: 'solid',
+    // borderBottomWidth: 3,
+    // borderColor: '#36C75A',
+    textAlign: 'center'
+  },
+  total: {
+    fontWeight: '900',
+    fontSize: 20,
+    marginTop: 20,
+    marginLeft: 210
+  },
+  x: {
+    fontWeight: '300',
+    fontSize: 20,
+  },
+  itemName:  {
+    // fontFamily: 'Montserrat-Medium',
+    fontSize: 20,
+    fontWeight: '300',
+    color: '#1d1d1d',
+    // marginRight: 20,
+    width: 140
+
+  },
+  itemPrice:  {
+    // fontFamily: 'Montserrat-Bold',
+    fontWeight: '300',
+    fontSize: 20,
+    // marginRight: 20,
+    color: "#1d1d1d",
+    width: 70
+  },
+  item: {
+    flexDirection: 'row',
+    margin: 10,
+    marginBottom: 0,
+    marginTop: 0,
+    padding: 15,
+    alignItems: 'center',
+    // backgroundColor: '#dbe1f1',
+    borderStyle: 'solid',
+    borderBottomWidth: 3,
+    // borderTopWidth: 3,
+    borderColor: '#f5f5f5',
+  },
   checkout: {
     marginTop: 24,
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#90b4ff'
+    backgroundColor: '#fff'
   },
   food: {
     flexDirection: 'column',
