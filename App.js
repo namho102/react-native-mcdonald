@@ -142,7 +142,7 @@ class MenuScreen extends React.Component {
           <View style={styles.card}>
             <Image
               style={styles.image}
-              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Double-Quarter-Pounder-with-Cheese.png'}}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Big-Mac.png'}}
             />
 
             <View style={styles.food}>
@@ -170,6 +170,20 @@ class MenuScreen extends React.Component {
           <View style={styles.card}>
             <Image
               style={styles.image}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Premium-Southwest-Salad-with-Buttermilk-Crispy-Chicken.png'}}
+            />
+
+            <View style={styles.food}>
+                <Text style={styles.name}>Southwest Salad</Text>
+                <Text style={styles.price}>&#36;4.79</Text>
+            </View>
+
+            <ItemCheckbox size={36} color="#36C75A"/>
+          </View>
+
+          <View style={styles.card}>
+            <Image
+              style={styles.image}
               source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Chicken-McNuggets-4pc.png'}}
             />
 
@@ -184,12 +198,27 @@ class MenuScreen extends React.Component {
           <View style={styles.card}>
             <Image
               style={styles.image}
-              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Premium-Southwest-Salad-with-Buttermilk-Crispy-Chicken.png'}}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-HASH-BROWNS.png'}}
             />
 
             <View style={styles.food}>
-                <Text style={styles.name}>Southwest Salad</Text>
-                <Text style={styles.price}>&#36;4.79</Text>
+                <Text style={styles.name}>Hash Browns</Text>
+                <Text style={styles.price}>&#36;2.39</Text>
+            </View>
+
+            <ItemCheckbox size={36} color="#36C75A"/>
+          </View>
+
+
+          <View style={styles.card}>
+            <Image
+              style={styles.image}
+              source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Sausage-Burrito.png'}}
+            />
+
+            <View style={styles.food}>
+                <Text style={styles.name}>Sausage Burrito</Text>
+                <Text style={styles.price}>&#36;3.69</Text>
             </View>
 
             <ItemCheckbox size={36} color="#36C75A"/>
@@ -208,7 +237,37 @@ class MenuScreen extends React.Component {
 
             <ItemCheckbox size={36} color="#36C75A"/>
           </View>
-        </ScrollView>
+
+
+        <View style={styles.card}>
+          <Image
+            style={styles.image}
+            source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Chocolate-McCafe-Shake-Medium.png'}}
+          />
+
+          <View style={styles.food}>
+              <Text style={styles.name}>Chocolate Shake</Text>
+              <Text style={styles.price}>&#36;2.19</Text>
+          </View>
+
+          <ItemCheckbox size={36} color="#36C75A"/>
+        </View>
+
+        <View style={styles.card}>
+          <Image
+            style={styles.image}
+            source={{uri: 'https://www.mcdonalds.com/content/dam/usa/nutrition/items/slider/t-mcdonalds-Fruit-n-Yogurt-Parfait.png'}}
+          />
+
+          <View style={styles.food}>
+              <Text style={styles.name}>Fruit Yogurt</Text>
+              <Text style={styles.price}>&#36;2.49</Text>
+          </View>
+
+          <ItemCheckbox size={36} color="#36C75A"/>
+        </View>
+
+      </ScrollView>
 
 
         <Button style={styles.mapButton}
