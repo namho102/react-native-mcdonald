@@ -4,13 +4,58 @@ import {  StackNavigator  } from 'react-navigation';
 import Expo from 'expo';
 import Button from 'react-native-button';
 import SearchBar from 'react-native-material-design-searchbar';
-import { MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Octicons, MaterialIcons } from '@expo/vector-icons';
 import ItemCheckbox from 'react-native-item-checkbox';
 // import { Sae, Fumi } from 'react-native-textinput-effects';
 // import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { CreditCardInput } from "react-native-credit-card-input";
-var Spinner = require('rn-spinner');
+import Spinner from 'rn-spinner';
+import styles from './Styles'
 
+class FinalScreen extends React.Component {
+  static navigationOptions = {
+    header: {
+       visible: false,
+     },
+  };
+
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={styles.final}>
+        <Image
+          style={{width: 260, height: 195}}
+          source={{uri: 'https://cdn.dribbble.com/users/31664/screenshots/1838645/thank-you-loop-2.gif'}}
+        />
+      <Text style={{fontSize: 22, fontWeight: '900', color: '#fff'}}>Your order is on its way!!!</Text>
+      </View>
+    );
+  }
+}
+
+
+class PaymentScreen extends React.Component {
+  static navigationOptions = {
+    header: {
+       visible: false,
+     },
+  };
+
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View style={styles.view} >
+          <Text style={styles.paymentHeader}><MaterialCommunityIcons name="cash-multiple" size={30} color="#353535"/> PAYMENT INFO</Text>
+          <CreditCardInput />
+
+            <Button style={styles.okButton}
+                  onPress={() => navigate('Final')}>
+                OK
+            </Button>
+      </View>
+    );
+  }
+}
 
 class CheckoutScreen extends React.Component {
   static navigationOptions = {
@@ -22,13 +67,11 @@ class CheckoutScreen extends React.Component {
     super(props);
     this.state = { num1: 1, num2: 1 };
   }
-  _onChange() {
 
-  }
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.checkout}>
+      <View style={styles.checkout} >
 
         <Text style={styles.reviewHeader}><Octicons name="checklist" size={30} color="#353535"/> REVIEW</Text>
 
@@ -69,8 +112,12 @@ class CheckoutScreen extends React.Component {
         <View>
           <Text style={styles.total}>Total   ${ this.state.num1 * 3.99 + this.state.num2 } </Text>
 
-          // <CreditCardInput onChange={this._onChange} />
         </View>
+
+        <Button style={styles.reviewButton}
+              onPress={() => navigate('Payment')}>
+            Save & Pay
+          </Button>
       </View>
     );
   }
@@ -254,139 +301,15 @@ class HomeScreen extends React.Component {
   }
 }
 
+
+
 const App = StackNavigator({
   Home: { screen: HomeScreen },
   Map: { screen: MapScreen },
   Menu: { screen: MenuScreen },
-  Checkout: {screen: CheckoutScreen}
+  Checkout: {screen: CheckoutScreen},
+  Payment: {screen: PaymentScreen},
+  Final: {screen: FinalScreen}
 });
 
 export default App;
-
-const styles = StyleSheet.create({
-  reviewHeader: {
-    // backgroundColor: 'rgba(47,47,47,0.98)',
-    color: '#353535',
-    backgroundColor: '#f8f8f8',
-    fontSize: 22,
-    fontWeight: '900',
-    padding: 20,
-    marginBottom: 20,
-    // paddingLeft: 40,
-    // borderStyle: 'solid',
-    // borderBottomWidth: 3,
-    // borderColor: '#36C75A',
-    textAlign: 'center'
-  },
-  total: {
-    fontWeight: '900',
-    fontSize: 20,
-    marginTop: 20,
-    marginLeft: 210
-  },
-  x: {
-    fontWeight: '300',
-    fontSize: 20,
-  },
-  itemName:  {
-    // fontFamily: 'Montserrat-Medium',
-    fontSize: 20,
-    fontWeight: '300',
-    color: '#1d1d1d',
-    // marginRight: 20,
-    width: 140
-
-  },
-  itemPrice:  {
-    // fontFamily: 'Montserrat-Bold',
-    fontWeight: '300',
-    fontSize: 20,
-    // marginRight: 20,
-    color: "#1d1d1d",
-    width: 70
-  },
-  item: {
-    flexDirection: 'row',
-    margin: 10,
-    marginBottom: 0,
-    marginTop: 0,
-    padding: 15,
-    alignItems: 'center',
-    // backgroundColor: '#dbe1f1',
-    borderStyle: 'solid',
-    borderBottomWidth: 3,
-    // borderTopWidth: 3,
-    borderColor: '#f5f5f5',
-  },
-  checkout: {
-    marginTop: 24,
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff'
-  },
-  food: {
-    flexDirection: 'column',
-    margin: 10,
-    alignItems: 'center',
-    width: 170
-  },
-  name: {
-    marginLeft: 10,
-    fontSize: 16,
-    fontFamily: 'Montserrat-Medium'
-  },
-  price: {
-    marginLeft: 20,
-    fontSize: 16,
-    // fontWeight: 'bold',
-    color: '#ff0017',
-    fontFamily: 'Montserrat-Bold'
-  },
-  image: {
-    width: 90,
-    height: 90,
-    borderRadius: 45
-  },
-  card: {
-    flexDirection: 'row',
-    margin: 10,
-    alignItems: 'center',
-    backgroundColor: '#e4e3e0',
-    borderRadius: 45
-  },
-  header: {
-    // backgroundColor: 'rgba(47,47,47,0.98)',
-    color: '#676879',
-    fontSize: 22,
-    fontWeight: '900',
-    padding: 10,
-    // paddingLeft: 40,
-    // borderStyle: 'solid',
-    // borderBottomWidth: 3,
-    // borderColor: '#36C75A',
-    textAlign: 'center'
-  },
-  view: {
-    marginTop: 24,
-    flex: 1,
-    flexDirection: 'column'
-  },
-  map: {
-    height: 490
-  },
-  mapButton: {
-    color: '#fff',
-    backgroundColor: '#36C75A',
-    padding: 20,
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  container: {
-    marginTop: 25,
-    flex: 1,
-    backgroundColor: '#eaebed',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-  },
-});
