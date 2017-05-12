@@ -288,6 +288,17 @@ class MapScreen extends React.Component {
        visible: false,
      },
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      coordinate:  {
+        latitude: 16.076454,
+        longitude: 108.153780,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+    }
+  };
+  }
   _handlePress() {
      console.log('Pressed!');
    }
@@ -307,13 +318,10 @@ class MapScreen extends React.Component {
          />
        <Expo.MapView
           style={styles.map}
-          initialRegion={{
-            latitude: 16.076454,
-            longitude: 108.153780,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}
-        />
+          initialRegion={this.state.coordinate}
+        >
+          <Expo.MapView.Marker  coordinate={this.state.coordinate}  />
+        </Expo.MapView>
       <Button style={styles.mapButton}
             onPress={() => navigate('Menu')}>
           Pick this location
